@@ -1,0 +1,39 @@
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+
+### localhosts should be omitted
+127.0.0.1	localhost
+::1         localhost
+
+### these should be omitted too
+255.255.255.255	broadcasthost
+ff02::1		ip6-allnodes
+
+### basic pattern
+192.168.0.1 basic1
+192.168.0.2 basic2
+192.168.0.3 basic3
+
+### tabs should be treated same as spaces
+192.168.0.4	tab1
+
+### multiple spaces and tabs
+192.168.0.5  multispace1
+192.168.0.6   multispace2
+192.168.0.7		multitabs1
+192.168.0.8			multitabs2
+
+### first hostname should be taken
+192.168.0.9 multihost1 multihost2 multihost3
+
+### duplicated hosts should be omitted
+192.168.0.10 dup1
+192.168.0.11 dup1  # This should be omitted
+
+### broken lines should be omitted
+192.168.0.12 
+foobar
