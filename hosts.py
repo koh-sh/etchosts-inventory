@@ -3,6 +3,7 @@ import os
 import re
 import json
 import argparse
+import ipaddress
 
 
 # if you want to use different file as hosts, update hostsfile
@@ -43,18 +44,18 @@ def makeInventory(f):
             continue
         if splitted[1] == '':
             continue
-        ip = splitted[0]
+        ip = ipaddress.ip_address(splitted[0])
         hostname = splitted[1]
-        if ip.startswith('127') or ip == '::1':
+        if ip.is_loopback or ip.is_link_local or ip.is_multicast:
             continue
-        if ip.startswith('ff') or ip == '255.255.255.255':
+        if str(ip) == '255.255.255.255':
             continue
         if hostname in hostlist:
             continue
 
         inventories['targets']['hosts'].append(hostname)
         inventories['_meta']['hostvars'][hostname] = {
-            'ansible_hostname': ip
+            'ansible_hostname': str(ip)
         }
         hostlist.append(hostname)
     return inventories
