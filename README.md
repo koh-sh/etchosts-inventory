@@ -49,7 +49,7 @@ $ git clone https://github.com/koh-sh/etchosts-inventory.git
 
 2. Config for Ansible
 
-Set this sctipt as inventory with ansible.cfg or environment variable or commandline option.
+Set this sctipt as inventory with ansible.cfg or environment variable or command line option.
 
 - ansible.cfg
 
@@ -66,7 +66,7 @@ $
 $ export ANSIBLE_INVENTORY=/path/to/etchosts-inventory/hosts.py
 ```
 
-- commandline option
+- command line option
 
 ```bash
 $ ansible-playbook -i /path/to/etchosts-inventory/hosts.py PLAYBOOK
