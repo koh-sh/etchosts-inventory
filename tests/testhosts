@@ -12,6 +12,7 @@
 ### these should be omitted too
 255.255.255.255	broadcasthost
 ff02::1		ip6-allnodes
+fe00::    ip6-localnet
 
 ### basic pattern
 192.168.0.1 basic1

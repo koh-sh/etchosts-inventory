@@ -46,7 +46,7 @@ def makeInventory(f):
             continue
         ip = ipaddress.ip_address(splitted[0])
         hostname = splitted[1]
-        if ip.is_loopback or ip.is_link_local or ip.is_multicast:
+        if ip.is_loopback or ip.is_link_local or ip.is_multicast or ip.is_reserved:
             continue
         if str(ip) == '255.255.255.255':
             continue

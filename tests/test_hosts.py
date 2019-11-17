@@ -8,9 +8,10 @@ def test_omitlocal():
     assert 'localhost' not in inventory['targets']['hosts']
 
 
-def test_omitbroadcasts():
+def test_omitreserved():
     assert 'broadcasthost' not in inventory['targets']['hosts']
     assert 'ip6-allnodes' not in inventory['targets']['hosts']
+    assert 'ip6-localnet' not in inventory['targets']['hosts']
 
 
 def test_basic():

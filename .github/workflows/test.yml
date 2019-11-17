@@ -20,7 +20,7 @@ jobs:
     - name: Lint with pycodestyle
       run: |
         pip install pycodestyle
-        pycodestyle hosts.py
+        pycodestyle --max-line-length=100 hosts.py
     - name: Test with pytest
       run: |
         pip install pytest
