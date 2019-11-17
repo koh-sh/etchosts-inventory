@@ -1,5 +1,7 @@
 # etchosts-inventory
 Python script to parse /etc/hosts for Ansible Inventory  
+*python2.x is not supported
+
 ## Overview
 
 This sctipt collects all hosts from /etc/hosts into `targets` group and set its ip address as `ansible_hostname`
