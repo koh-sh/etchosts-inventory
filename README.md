@@ -1,4 +1,6 @@
 # etchosts-inventory
+![](https://github.com/koh-sh/etchosts-inventory/workflows/.github/workflows/test.yml/badge.svg)
+
 Python script to parse /etc/hosts for Ansible Inventory  
 *python2.x is not supported
 
