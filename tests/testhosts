@@ -31,10 +31,6 @@ fe00::    ip6-localnet
 ### first hostname should be taken
 192.168.0.9 multihost1 multihost2 multihost3
 
-### duplicated hosts should be omitted
-192.168.0.10 dup1
-192.168.0.11 dup1  # This should be omitted
-
 ### broken lines should be omitted
-192.168.0.12 
+192.168.0.10 
 foobar
