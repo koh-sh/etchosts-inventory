@@ -6,7 +6,7 @@ Python script to parse /etc/hosts for Ansible Inventory
 
 ## Overview
 
-This sctipt collects all hosts from /etc/hosts into `targets` group and set its ip address as `ansible_hostname`
+This sctipt collects all hosts from /etc/hosts into `targets` group.
 
 ```bash
 $ cat /etc/hosts
@@ -18,14 +18,7 @@ $ cat /etc/hosts
 $ ansible-inventory -i etchosts-inventory/hosts.py --list
 {
     "_meta": {
-        "hostvars": {
-            "web1": {
-                "ansible_hostname": "192.168.1.1"
-            },
-            "web2": {
-                "ansible_hostname": "192.168.1.2"
-            }
-        }
+        "hostvars": {}
     },
     "all": {
         "children": [

@@ -54,9 +54,6 @@ def makeInventory(f):
             continue
 
         inventories['targets']['hosts'].append(hostname)
-        inventories['_meta']['hostvars'][hostname] = {
-            'ansible_hostname': str(ip)
-        }
         hostlist.append(hostname)
     return inventories
 
