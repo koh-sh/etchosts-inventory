@@ -36,8 +36,6 @@ def makeInventory(f):
     hostlines = [host.strip() for host in hosts
                  if not host.startswith('#') and host.strip() != '']
 
-    hostlist = []  # This is to omit duplicated entry
-
     for i in hostlines:
         splitted = re.split(' +|	+', i)
         if len(splitted) < 2:
@@ -50,11 +48,10 @@ def makeInventory(f):
             continue
         if str(ip) == '255.255.255.255':
             continue
-        if hostname in hostlist:
+        if hostname in inventories['targets']['hosts']:
             continue
 
         inventories['targets']['hosts'].append(hostname)
-        hostlist.append(hostname)
     return inventories
 
 
