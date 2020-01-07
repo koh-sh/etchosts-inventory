@@ -42,7 +42,10 @@ def makeInventory(f):
             continue
         if splitted[1] == '':
             continue
-        ip = ipaddress.ip_address(splitted[0])
+        try:
+            ip = ipaddress.ip_address(splitted[0])
+        except ValueError:
+            continue
         hostname = splitted[1]
         if ip.is_loopback or ip.is_link_local or ip.is_multicast or ip.is_reserved:
             continue
