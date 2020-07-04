@@ -7,9 +7,9 @@ jobs:
 
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
+      max-parallel: 3
       matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8]
 
     steps:
     - uses: actions/checkout@v1
@@ -21,6 +21,10 @@ jobs:
       run: |
         pip install pycodestyle
         pycodestyle --max-line-length=100 hosts.py
+    - name: Type check with mypy
+      run: |
+        pip install mypy
+        mypy hosts.py
     - name: Test with pytest
       run: |
         pip install pytest
