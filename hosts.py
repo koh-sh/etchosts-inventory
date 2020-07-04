@@ -1,16 +1,19 @@
 #!/usr/bin/env python
-import os
 import re
 import json
 import argparse
 import ipaddress
+from typing import Dict, List, Union, Any
 
 
 # if you want to use different file as hosts, update hostsfile
-hostsfile = '/etc/hosts'
+hostsfile: str = '/etc/hosts'
+
+# Define Type for Inventories
+Inventories = Dict[str, Union[Dict[Any, Any], Dict[str, List[str]]]]
 
 
-def _getargs():
+def _getargs() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description='Parse /etc/hosts for Ansible Inventory')
     parser.add_argument('--list',
@@ -24,29 +27,29 @@ def _getargs():
     return args
 
 
-def makeInventory(f):
-    inventories = {
+def makeInventory(f: str) -> Inventories:
+    inventories: Inventories = {
         '_meta':   {'hostvars': {}},
         'targets':     {'hosts': []}
     }
 
-    with open(f, 'r') as f:
-        hosts = f.readlines()
+    with open(f, 'r') as filepath:
+        hosts: List[str] = filepath.readlines()
 
-    hostlines = [host.strip() for host in hosts
-                 if not host.startswith('#') and host.strip() != '']
+    hostlines: List[str] = [host.strip() for host in hosts
+                            if not host.startswith('#') and host.strip() != '']
 
     for i in hostlines:
-        splitted = re.split(' +|	+', i)
+        splitted: List[str] = re.split(' +|	+', i)
         if len(splitted) < 2:
             continue
         if splitted[1] == '':
             continue
         try:
-            ip = ipaddress.ip_address(splitted[0])
+            ip: ipaddress.IPv4Address = ipaddress.ip_address(splitted[0])
         except ValueError:
             continue
-        hostname = splitted[1]
+        hostname: str = splitted[1]
         if ip.is_loopback or ip.is_link_local or ip.is_multicast or ip.is_reserved:
             continue
         if str(ip) == '255.255.255.255':
@@ -59,5 +62,5 @@ def makeInventory(f):
 
 
 if __name__ == "__main__":
-    args = _getargs()
+    args: argparse.Namespace = _getargs()
     print(json.dumps(makeInventory(args.f), indent=4))
