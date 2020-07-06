@@ -3,14 +3,15 @@ import re
 import json
 import argparse
 import ipaddress
-from typing import Dict, List, Union, Any
+from typing import Dict, List, TypedDict
 
 
 # if you want to use different file as hosts, update hostsfile
 hostsfile: str = '/etc/hosts'
 
-# Define Type for Inventories
-Inventories = Dict[str, Union[Dict[Any, Any], Dict[str, List[str]]]]
+class Inventories(TypedDict):
+    _meta: Dict[str,Dict[str, str]]
+    targets: Dict[str, List[str]]
 
 
 def _getargs() -> argparse.Namespace:
