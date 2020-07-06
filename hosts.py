@@ -9,8 +9,9 @@ from typing import Dict, List, TypedDict
 # if you want to use different file as hosts, update hostsfile
 hostsfile: str = '/etc/hosts'
 
+
 class Inventories(TypedDict):
-    _meta: Dict[str,Dict[str, str]]
+    _meta: Dict[str, Dict[str, str]]
     targets: Dict[str, List[str]]
 
 
